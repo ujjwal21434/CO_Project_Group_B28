@@ -1,12 +1,14 @@
-f = open("file.txt", "r")
+f = open("run", "r")
 w = open("binary.txt", "w")
 readlist = f.readlines()
-length = len(readlist)
-print(length)
+
 writelist = []
 hltlist=[]
 varline=[]
 
+
+readlist=[i for i in readlist if i!='\n']
+length = len(readlist)
 
 vardict = {}
 labdict={}
@@ -156,7 +158,6 @@ else:
     else:
         print("wrong syntax for hlt")
 
-    
 
 
     
@@ -520,14 +521,6 @@ if(len(hltlist)==1):
                         break
                     else:
                         vardict[l[1]]=i+1
-        
-
-
-
-
-
-
-            
 
         elif(l[0] == "ld"):
             num = len(l)
@@ -695,4 +688,11 @@ if(len(hltlist)==1):
             break
     if(count==length-1):
         writelist.append(hltlist[0])
-print(writelist)
+
+for i in writelist:
+    print(i,end="")
+    
+w.writelines(["%s" % item  for item in writelist])
+
+f.close()
+w.close()
